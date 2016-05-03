@@ -23,7 +23,7 @@ public class DefaultController implements Controller {
 		Player p2 = model.getPlayers().get(1);
 		
 		while (true) {
-			Player currentPlayer ;
+			Player currentPlayer;
 			if(p1.getMoveFlag()) {
 				currentPlayer = p1;
 			} else {
@@ -36,6 +36,7 @@ public class DefaultController implements Controller {
 		        view.printGameOver();
 				break;
 			}
+			
             view.printBoard();
             
             int userInput = view.getInput(currentPlayer);
@@ -56,16 +57,18 @@ public class DefaultController implements Controller {
 	}
 
 	private void doMove(Player p, int startPos, int seedNum, int houseNum, boolean startFlag) {
-		if (startFlag) {
+		if (startFlag) {			
 			House startHouse = p.getHouses().get(""+startPos);
 			if (seedNum == -1) {
 				seedNum = startHouse.getSeeds();
 			}
 			startHouse.clear();
 		} else {
+			//add to opponent's houses
 			p.getHouses().get("1").add(1);
 			seedNum = seedNum - 1;
 			if (seedNum == 0) {
+				//capture
 				if (p.getMoveFlag() && p.getHouses().get("1").getSeeds() == 1
 						&& p.getHouses().get("1").getOppositeHouse().getSeeds() > 0) {
 					p.getStore().add(p.getHouses().get("1").getOppositeHouse().getSeeds()+1);
@@ -83,7 +86,6 @@ public class DefaultController implements Controller {
 				}
 			}
 		}
-		// 取出startPos位置house的seed, 顺序往其后的house累加, 直到临界点(到达对手house, 或最后在自己store)
 		for (int i = 1; i <= seedNum; i++) {
 			if ((startPos + i) <= houseNum) {
 				House currentHouse = p.getHouses().get(""+(startPos+i));
