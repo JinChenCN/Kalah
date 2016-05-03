@@ -60,11 +60,11 @@ public class DefaultController implements Controller {
 		House currentHouse;
 		House oppositeHouse;
 		if (startFlag) {			
-			House startHouse = p.getHouses().get(""+startPos);
+			currentHouse = p.getHouses().get(""+startPos);
 			if (seedNum == -1) {
-				seedNum = startHouse.getSeeds();
+				seedNum = currentHouse.getSeeds();
 			}
-			startHouse.clear();
+			currentHouse.clear();
 		} else {
 			currentHouse = p.getHouses().get("1");
 			oppositeHouse = currentHouse.getOppositeHouse();
