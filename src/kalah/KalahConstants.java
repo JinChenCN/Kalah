@@ -7,9 +7,9 @@ public class KalahConstants {
     public static final String HOUSE_EMPTY = "House is empty. Move again.";
     
     public static final String BOARD_BOARDER = "+----+-------+-------+-------+-------+-------+-------+----+";
-    public static final String BOARD_SEEDS_P2 = "| P2 | 6[ %d] | 5[ %d] | 4[ %d] | 3[ %d] | 2[ %d] | 1[ %d] |  %d |";
+    public static final String BOARD_SEEDS_P2 = "| P2 | 6[%s] | 5[%s] | 4[%s] | 3[%s] | 2[%s] | 1[%s] | %s |";
     public static final String BOARD_SEPERATOR = "|    |-------+-------+-------+-------+-------+-------|    |";
-    public static final String BOARD_SEEDS_P1 = "|  %d | 1[ %d] | 2[ %d] | 3[ %d] | 4[ %d] | 5[ %d] | 6[ %d] | P1 |";
+    public static final String BOARD_SEEDS_P1 = "| %s | 1[%s] | 2[%s] | 3[%s] | 4[%s] | 5[%s] | 6[%s] | P1 |";
     
     public static final String GAME_OVER = "Game over";
     
@@ -18,4 +18,5 @@ public class KalahConstants {
     
     
     public static final int TIE = -1;
+    public static final String OUTPUT_TIE = "A tie!";
 }

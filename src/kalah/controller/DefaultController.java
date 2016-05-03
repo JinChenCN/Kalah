@@ -33,7 +33,7 @@ public class DefaultController implements Controller {
 			boolean finishFlag = false;
 			finishFlag = currentPlayer.isAllHouseEmpty();
 			if (finishFlag) {
-		        view.printGameEnded();
+		        view.printGameOver();
 				break;
 			}
             view.printBoard();
@@ -41,13 +41,13 @@ public class DefaultController implements Controller {
             int userInput = view.getInput(currentPlayer);
 
             if (userInput == KalahConstants.INPUT_QUIT) {
-                view.printGameQuit();
+                view.printQuit();
                 return;
             }
             
             int seedsInSelectedHouse = currentPlayer.getHouses().get("" + userInput).getSeeds();
             if (seedsInSelectedHouse == 0) {
-                view.printHouseEmpty();
+                view.printHouseIsEmpty();
                 continue;
             }
             

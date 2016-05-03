@@ -5,11 +5,11 @@ import kalah.model.Player;
 public interface View {
     void printBoard();
 
-    void printGameEnded();
+    void printGameOver();
 
-    void printGameQuit();
+    void printQuit();
 
-    void printHouseEmpty();
+    void printHouseIsEmpty();
 
     int getInput(Player player);
 

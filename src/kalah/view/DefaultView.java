@@ -28,22 +28,22 @@ public class DefaultView implements View {
 		Player p2 = model.getPlayers().get(1);
 		
 		String seedsOfP1 = String.format(KalahConstants.BOARD_SEEDS_P1,
-				p1.getStore().getSeeds(),
-				p1.getHouses().get("1").getSeeds(), 
-				p1.getHouses().get("2").getSeeds(),
-				p1.getHouses().get("3").getSeeds(), 
-				p1.getHouses().get("4").getSeeds(), 
-				p1.getHouses().get("5").getSeeds(), 
-				p1.getHouses().get("6").getSeeds() );
+				preProcess(p2.getStore().getSeeds()),
+				preProcess(p1.getHouses().get("1").getSeeds()), 
+				preProcess(p1.getHouses().get("2").getSeeds()),
+				preProcess(p1.getHouses().get("3").getSeeds()), 
+				preProcess(p1.getHouses().get("4").getSeeds()), 
+				preProcess(p1.getHouses().get("5").getSeeds()), 
+				preProcess(p1.getHouses().get("6").getSeeds()) );
 		
 		String seedsOfP2 = String.format(KalahConstants.BOARD_SEEDS_P2, 
-				p2.getHouses().get("6").getSeeds(), 
-				p2.getHouses().get("5").getSeeds(),
-				p2.getHouses().get("4").getSeeds(), 
-				p2.getHouses().get("3").getSeeds(), 
-				p2.getHouses().get("2").getSeeds(), 
-				p2.getHouses().get("1").getSeeds(), 
-				p2.getStore().getSeeds() );
+				preProcess(p2.getHouses().get("6").getSeeds()), 
+				preProcess(p2.getHouses().get("5").getSeeds()),
+				preProcess(p2.getHouses().get("4").getSeeds()), 
+				preProcess(p2.getHouses().get("3").getSeeds()), 
+				preProcess(p2.getHouses().get("2").getSeeds()), 
+				preProcess(p2.getHouses().get("1").getSeeds()), 
+				preProcess(p1.getStore().getSeeds()) );
 		
 		io.println(KalahConstants.BOARD_BOARDER);
 		io.println(seedsOfP2);
@@ -52,35 +52,37 @@ public class DefaultView implements View {
 		io.println(KalahConstants.BOARD_BOARDER);
 	}
 
+	private String preProcess(int seeds) {
+		return (seeds < 10 ? " " + seeds : "" + seeds);
+	}
 	@Override
-	public void printGameEnded() {
-		printGameFinished();
+	public void printGameOver() {
+		printGameEnd();
 		for (Player player : model.getPlayers()) {
             io.println(String.format(KalahConstants.PLAYER_SCORE, player.getId(), player.getScore()));
         }
         int winner = model.getWinner();
         if (winner == -1) {
-            io.println(KalahConstants.PLAYER_SCORE);
+            io.println(KalahConstants.OUTPUT_TIE);
         } else {
             io.println(String.format(KalahConstants.WIN, winner));
-        }
-		
+        }		
 	}
 	
-    private void printGameFinished() {
+    private void printGameEnd() {
         printBoard();
         io.println(KalahConstants.GAME_OVER);
         printBoard();
     }
 
 	@Override
-	public void printGameQuit() {
+	public void printQuit() {
         io.println(KalahConstants.GAME_OVER);
         printBoard();	
 	}
 
 	@Override
-	public void printHouseEmpty() {
+	public void printHouseIsEmpty() {
         io.println(KalahConstants.HOUSE_EMPTY);		
 	}
 
