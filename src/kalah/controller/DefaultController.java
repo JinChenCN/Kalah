@@ -57,6 +57,8 @@ public class DefaultController implements Controller {
 	}
 
 	private void doMove(Player p, int startPos, int seedNum, int houseNum, boolean startFlag) {
+		House currentHouse;
+		House oppositeHouse;
 		if (startFlag) {			
 			House startHouse = p.getHouses().get(""+startPos);
 			if (seedNum == -1) {
@@ -64,48 +66,42 @@ public class DefaultController implements Controller {
 			}
 			startHouse.clear();
 		} else {
+			currentHouse = p.getHouses().get("1");
+			oppositeHouse = currentHouse.getOppositeHouse();
 			//add to opponent's houses
-			p.getHouses().get("1").add(1);
+			currentHouse.add(1);
 			seedNum = seedNum - 1;
 			if (seedNum == 0) {
 				//capture
-				if (p.getMoveFlag() && p.getHouses().get("1").getSeeds() == 1
-						&& p.getHouses().get("1").getOppositeHouse().getSeeds() > 0) {
-					p.getStore().add(p.getHouses().get("1").getOppositeHouse().getSeeds()+1);
-					p.getHouses().get("1").clear();
-					p.getHouses().get("1").getOppositeHouse().clear();
+				if (p.getMoveFlag() && currentHouse.getSeeds() == 1
+						&& oppositeHouse.getSeeds() > 0) {
+					capture(p, currentHouse, oppositeHouse);
 				} 
 				if (p.getMoveFlag()) {
-					p.setMoveFlag(false);
-					p.getOpponent().setMoveFlag(true);
+					changePlayer(p);
 					return;
 				} else {
-					p.setMoveFlag(true);
-					p.getOpponent().setMoveFlag(false);
+					samePlayer(p);
 					return;
 				}
 			}
 		}
 		for (int i = 1; i <= seedNum; i++) {
 			if ((startPos + i) <= houseNum) {
-				House currentHouse = p.getHouses().get(""+(startPos+i));
-				House oppositeHouse = currentHouse.getOppositeHouse();
+				currentHouse = p.getHouses().get(""+(startPos+i));
+				oppositeHouse = currentHouse.getOppositeHouse();
 				currentHouse.add(1);
 				if (i == seedNum) {
 					//capture
 					if (p.getMoveFlag() && currentHouse.getSeeds() == 1
 							&& oppositeHouse.getSeeds() > 0) {
-						p.getStore().add(oppositeHouse.getSeeds()+1);
-						currentHouse.clear();
-						oppositeHouse.clear();
+						capture(p, currentHouse, oppositeHouse);
 					}
 					if (p.getMoveFlag()) {
-						p.setMoveFlag(false);
-						p.getOpponent().setMoveFlag(true);
+						changePlayer(p);
 						return;
 					} else {
-						p.setMoveFlag(true);
-						p.getOpponent().setMoveFlag(false);
+						samePlayer(p);
 						return;
 					}
 				}
@@ -132,6 +128,22 @@ public class DefaultController implements Controller {
 				return;
 			}
 		}
+	}
+	
+	private void changePlayer(Player p) {
+		p.setMoveFlag(false);
+		p.getOpponent().setMoveFlag(true);
+	}
+	
+	private void samePlayer(Player p) {
+		p.setMoveFlag(true);
+		p.getOpponent().setMoveFlag(false);
+	}
+	
+	private void capture(Player p, House currentHouse, House oppositeHouse) {
+		p.getStore().add(oppositeHouse.getSeeds()+1);
+		currentHouse.clear();
+		oppositeHouse.clear();
 	}
 	
 
