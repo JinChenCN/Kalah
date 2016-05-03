@@ -72,18 +72,7 @@ public class DefaultController implements Controller {
 			currentHouse.add(1);
 			seedNum = seedNum - 1;
 			if (seedNum == 0) {
-				//capture
-				if (p.getMoveFlag() && currentHouse.getSeeds() == 1
-						&& oppositeHouse.getSeeds() > 0) {
-					capture(p, currentHouse, oppositeHouse);
-				} 
-				if (p.getMoveFlag()) {
-					changePlayer(p);
-					return;
-				} else {
-					samePlayer(p);
-					return;
-				}
+				lastSeed(p, currentHouse, oppositeHouse);
 			}
 		}
 		for (int i = 1; i <= seedNum; i++) {
@@ -92,18 +81,7 @@ public class DefaultController implements Controller {
 				oppositeHouse = currentHouse.getOppositeHouse();
 				currentHouse.add(1);
 				if (i == seedNum) {
-					//capture
-					if (p.getMoveFlag() && currentHouse.getSeeds() == 1
-							&& oppositeHouse.getSeeds() > 0) {
-						capture(p, currentHouse, oppositeHouse);
-					}
-					if (p.getMoveFlag()) {
-						changePlayer(p);
-						return;
-					} else {
-						samePlayer(p);
-						return;
-					}
+					lastSeed(p, currentHouse, oppositeHouse);
 				}
 			} else if ((startPos + i) == houseNum + 1) {
 				if (i != seedNum) {
@@ -127,6 +105,20 @@ public class DefaultController implements Controller {
 			} else {
 				return;
 			}
+		}
+	}
+	
+	private void lastSeed(Player p, House currentHouse, House oppositeHouse) {
+		if (p.getMoveFlag() && currentHouse.getSeeds() == 1
+				&& oppositeHouse.getSeeds() > 0) {
+			capture(p, currentHouse, oppositeHouse);
+		} 
+		if (p.getMoveFlag()) {
+			changePlayer(p);
+			return;
+		} else {
+			samePlayer(p);
+			return;
 		}
 	}
 	
