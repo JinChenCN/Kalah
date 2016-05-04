@@ -15,7 +15,6 @@ public class DefaultView implements View {
     private String BOARD_SEPERATOR = "|    |";
     private String BOARD_SEEDS_P1 = "| %s |";
     private String BOARD_SEEDS_P2 = "| P2 |";
-    //"| P2 | 6[%s] | 5[%s] | 4[%s] | 3[%s] | 2[%s] | 1[%s] | %s |";
 	
 	public DefaultView (Model model, IO io) {
 		this.io = io;
