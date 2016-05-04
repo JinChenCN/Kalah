@@ -18,8 +18,9 @@ public class GameSetting {
 	public static void loadConfig() {
 		Properties properties = new Properties();
         InputStream input;
+        //System.out.println(System.getProperty("user.dir"));
         try {
-            input = new FileInputStream("../config.properties");
+            input = new FileInputStream("config.properties");
             properties.load(input);
         } catch (FileNotFoundException e) {
         } catch (IOException e) {

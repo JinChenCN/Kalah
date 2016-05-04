@@ -21,6 +21,7 @@ public class DefaultController implements Controller {
 	public void gameStart() {
 		Player p1 = model.getPlayers().get(0);
 		Player p2 = model.getPlayers().get(1);
+		view.setBoard(GameSetting.houseNum);
 		
 		while (true) {
 			Player currentPlayer;
