@@ -1,6 +1,6 @@
 package kalah.model;
 
-public class PitBase implements Pit {
+public class PitBase {
 	private final int initialSeeds;
 	private int seeds;
 	

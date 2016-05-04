@@ -3,9 +3,6 @@ package kalah.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import kalah.KalahConstants;
-import kalah.setting.GameSetting;
-
 public class Player {
 	private Player opponent = null;
 	private Map<String, House> houses = null;
