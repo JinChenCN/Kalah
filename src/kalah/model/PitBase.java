@@ -1,12 +1,12 @@
 package kalah.model;
 
 public class PitBase {
-	private final int initialSeeds;
+	private final int beginingSeeds;
 	private int seeds;
 	
 	public PitBase(int seeds) {
 		this.seeds = seeds;
-		this.initialSeeds = seeds;
+		this.beginingSeeds = seeds;
 	}
 	
 	public void setSeeds(int seeds) {
@@ -26,7 +26,7 @@ public class PitBase {
 	}
 	
 	public int getBegingingSeeds() {
-		return this.initialSeeds;
+		return this.beginingSeeds;
 	}
 
 }
