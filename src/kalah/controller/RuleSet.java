@@ -4,5 +4,5 @@ public interface RuleSet {
 	void setCaptureRule(CaptureRule captureRule);
 	CaptureRule getCaptureRule();
 	
-	//Other game rules can also be set and got here
+	//Other game rules can also be set and got from here
 }
