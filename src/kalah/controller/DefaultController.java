@@ -11,10 +11,15 @@ import kalah.view.View;
 public class DefaultController implements Controller {
 	private Model model;
 	private View view;
+	private RuleSet ruleSet;
+	private CaptureRule captureRule;
 	
-	public DefaultController(Model model, View view) {
+	
+	public DefaultController(Model model, View view, RuleSet ruleSet) {
 		this.model = model;
 		this.view = view;
+		this.ruleSet = ruleSet;
+		this.captureRule = ruleSet.getCaptureRule();
 	}
 
 	@Override
@@ -112,7 +117,7 @@ public class DefaultController implements Controller {
 	private void lastSeed(Player p, House currentHouse, House oppositeHouse) {
 		if (p.getMoveFlag() && currentHouse.getSeeds() == 1
 				&& oppositeHouse.getSeeds() > 0) {
-			capture(p, currentHouse, oppositeHouse);
+			captureRule.capture(p, currentHouse);
 		} 
 		if (p.getMoveFlag()) {
 			changePlayer(p);
@@ -131,13 +136,6 @@ public class DefaultController implements Controller {
 	private void samePlayer(Player p) {
 		p.setMoveFlag(true);
 		p.getOpponent().setMoveFlag(false);
-	}
-	
-	private void capture(Player p, House currentHouse, House oppositeHouse) {
-		p.getStore().add(oppositeHouse.getSeeds()+1);
-		currentHouse.clear();
-		oppositeHouse.clear();
-	}
-	
+	}	
 
 }
