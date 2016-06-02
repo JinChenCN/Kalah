@@ -115,7 +115,7 @@ public class DefaultController implements Controller {
 	private void lastSeed(Player p, House currentHouse, House oppositeHouse) {
 		if (p.getMoveFlag() && currentHouse.getSeeds() == 1
 				&& oppositeHouse.getSeeds() > 0) {
-			ruleSet.getCaptureRule().capture(p, currentHouse);
+			ruleSet.getRule("capture").execute(p, currentHouse);
 		} 
 		if (p.getMoveFlag()) {
 			changePlayer(p);

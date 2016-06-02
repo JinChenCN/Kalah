@@ -1,8 +1,16 @@
 package kalah.controller;
 
-public interface RuleSet {
-	void setCaptureRule(CaptureRule captureRule);
-	CaptureRule getCaptureRule();
+import java.util.HashMap;
+
+public class RuleSet {
+	private HashMap<String, Rule> rules = new HashMap<String, Rule>();
 	
-	//Other game rules can also be set and got from here
+	public void addRule(String ruleName, Rule rule) {
+		rules.put(ruleName, rule);
+	}
+	
+	public Rule getRule(String ruleName) {
+		return rules.get(ruleName);
+	}
+
 }

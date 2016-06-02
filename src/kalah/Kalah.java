@@ -3,11 +3,9 @@ package kalah;
 import com.qualitascorpus.testsupport.IO;
 import com.qualitascorpus.testsupport.MockIO;
 
-import kalah.controller.CaptureRule;
 import kalah.controller.Controller;
 import kalah.controller.DefaultCaptureRule;
 import kalah.controller.DefaultController;
-import kalah.controller.DefaultRuleSet;
 import kalah.controller.RuleSet;
 import kalah.model.DefaultModel;
 import kalah.model.Model;
@@ -28,8 +26,8 @@ public class Kalah {
 		GameSetting.loadConfig();
 		Model model = new DefaultModel();
 		View view = new DefaultView(model, io);
-		RuleSet ruleSet = new DefaultRuleSet();
-		ruleSet.setCaptureRule(new DefaultCaptureRule());
+		RuleSet ruleSet = new RuleSet();
+		ruleSet.addRule("capture", new DefaultCaptureRule());
 		Controller controller = new DefaultController(model, view, ruleSet);
 		
 		controller.gameStart();
